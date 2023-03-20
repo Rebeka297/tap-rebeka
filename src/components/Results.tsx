@@ -1,3 +1,5 @@
+import { Button } from './Button';
+
 type ResultsIn = {
   history: any[][]
   onJumpTo: (step: number) => void
@@ -15,11 +17,7 @@ export function Results(props: ResultsIn) {
         }
         return (
           <li key={move}>
-            <button
-              onClick={() => props.onJumpTo(move)}
-            >
-              {description}
-            </button>
+            <Button label={description} onKlik={() => props.onJumpTo(move)} />
           </li>
         );
       })
