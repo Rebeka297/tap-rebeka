@@ -44,26 +44,21 @@ function Board(propsBoard: BoardType) {
   return (
     <>
       <div className="status">{status}</div>
-      <div className="board-row">
-      <Square value={propsBoard.squares[0]} onSquareClick={() => handleClick(0) } />
-      <Square value={propsBoard.squares[1]} onSquareClick={() => handleClick(1) } />
-      <Square value={propsBoard.squares[2]} onSquareClick={() => handleClick(2) } />
-      </div>
-      <div className="board-row">
-      <Square value={propsBoard.squares[3]} onSquareClick={() => handleClick(3) } />
-      <Square value={propsBoard.squares[4]} onSquareClick={() => handleClick(4) } />
-      <Square value={propsBoard.squares[5]} onSquareClick={() => handleClick(5) } />
-      </div>
-      <div className="board-row">
-      <Square value={propsBoard.squares[6]} onSquareClick={() => handleClick(6) } />
-      <Square value={propsBoard.squares[7]} onSquareClick={() => handleClick(7) } />
-      <Square value={propsBoard.squares[8]} onSquareClick={() => handleClick(8) } />
-      </div>
+      {
+        [0,1,2].map((rowIndex: number) => {
+          return (<div className="board-row">
+            {
+              [0,1,2].map((columnIndex) => {
+                const iterator = rowIndex*3 + columnIndex
+                return (<Square value={propsBoard.squares[iterator]} onSquareClick={() => handleClick(iterator) } />)
+              })
+            }
+          </div>)
+        })
+      }
     </>
   );
 }
-
-
 
 function Game() {
   const [history, setHistory] = useState([Array(9).fill(null)]);
