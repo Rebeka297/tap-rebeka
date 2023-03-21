@@ -17,6 +17,7 @@ export function Board(propsBoard: BoardType) {
     propsBoard.onPlay(nextSquares);
   }
 
+
   const winner = calculateWinner(propsBoard.squares);
   let status;
   if (winner) {
@@ -29,11 +30,11 @@ export function Board(propsBoard: BoardType) {
     <>
       <div className="status">{status}</div>
       {
-        [0,1,2].map((rowIndex: number) => {
+        [0,1,2,3].map((rowIndex: number) => {
           return (<div key={`row${rowIndex}`} className="board-row">
             {
-              [0,1,2].map((columnIndex) => {
-                const iterator = rowIndex*3 + columnIndex
+              [0,1,2,3].map((columnIndex) => {
+                const iterator = rowIndex*4 + columnIndex
                 return (<Square key={`column${iterator}`} value={propsBoard.squares[iterator]} onSquareClick={() => handleClick(iterator) } />)
               })
             }
